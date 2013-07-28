@@ -18,6 +18,8 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-ngmin');
 	grunt.loadNpmTasks('grunt-html2js');
+	grunt.loadNpmTasks('grunt-bg-shell');
+	grunt.loadNpmTasks('grunt-env');
 
 	/**
 	 * Load in our build configuration file.
@@ -83,6 +85,13 @@ module.exports = function ( grunt ) {
 				pushTo: 'origin'
 			}
 		},		
+
+		env: {
+			dev: {
+				DEBUG: [process.env.DEBUG, 'skycaptain:*'].join(','),
+				NODE_ENV: 'development'
+			}
+		},
 
 		/**
 		 * The directories to delete when `grunt clean` is executed.
@@ -263,6 +272,9 @@ module.exports = function ( grunt ) {
 			],
 			gruntfile: [
 				'Gruntfile.js'
+			],
+			server: [
+				'<%= server_files %>'
 			],
 			options: {
 				curly: true,
@@ -515,6 +527,18 @@ module.exports = function ( grunt ) {
 					livereload: false
 				}
 			}
+		},
+		/*
+		 * Background shell commands
+		 */
+		bgShell: {
+			/*
+			 * Start nodemon of the server
+			 */
+			nodemon: {
+				cmd: 'node ./node_modules/nodemon/nodemon.js server/index.js --watch server/ --watch config/',
+				bg: true
+			}
 		}
 	};
 
@@ -530,6 +554,18 @@ module.exports = function ( grunt ) {
 	grunt.renameTask( 'watch', 'delta' );
 	grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
 
+	/*
+	 * Run the server and watch the files
+	 */
+	grunt.registerTask( 'nodemon', [ 'bgShell:nodemon' ]);
+	grunt.registerTask( 'server', [
+		'build',
+		//'karma:unit',
+		'env:dev',
+		'nodemon',
+		'delta'
+	]);
+
 	/**
 	 * The default task is to build and compile.
 	 */
@@ -541,7 +577,7 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'build', [
 		'clean', 'html2js', 'jshint', 'coffeelint', 'coffee','recess:build',
 		'copy:build_assets', 'copy:build_appjs', 'copy:build_vendorjs',
-		'index:build', 'karmaconfig', 'karma:continuous' 
+		'index:build', 'karmaconfig'//, 'karma:continuous' 
 	]);
 
 	/**
