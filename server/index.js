@@ -4,6 +4,7 @@ var http = require('http'),
 
 // vendor
 var express = require('express'),
+	passport = require('passport'),
 	RedisStore = require('connect-redis')(express);
 
 // local
@@ -22,6 +23,10 @@ app.configure(function(){
 	// Session
 	app.use(express.cookieParser());
 	app.use(express.session(env.current.session));
+
+	// Enable passport
+	app.use(passport.initialize());
+	app.use(passport.session());
 
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
