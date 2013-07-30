@@ -1,1 +1,18 @@
-<h1>Home Page</h1>
+<table class="user-list-content">
+	<thead>
+		<tr>
+			<th>
+				<h4>Active Users</h4>
+				<input type="text" placeholder="Search" ng-model="userFilter" />
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="user in users | filter:{username:userFilter}">
+			<td>
+				<span class="active-icon" ng-class="{available: user.status === 1}"></span>
+				<span ng-bind-html-unsafe="user.username | match:userFilter"></span>
+			</td>
+		</tr>
+	</tbody>
+</table>

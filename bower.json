@@ -10,5 +10,9 @@
     "angular-ui-utils": "~0.0.3",
     "underscore": "~1.5.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "angular-resource": "~1.0.7",
+    "socket.io-client": "~0.9.16",
+    "angular-ui": "~0.4.0"
+  }
 }

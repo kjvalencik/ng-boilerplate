@@ -1,7 +1,10 @@
 /* Bootstrap styling */
 @import '../../vendor/bootstrap/less/bootstrap.less';
+@import '../../vendor/bootstrap/less/responsive.less';
 @import 'variables.less';
 @import 'bootswatch.less';
+@import 'mixins.less';
+@import 'zocial.less';
 
 // Sprite icons path
 // -------------------------
@@ -13,11 +16,40 @@ html {
 }
 
 body {
-	padding-top: 50px;
+	padding-top: 65px;
+}
+
+.unstyled {
+	margin-left: 0;
+	list-style: none;
 }
 
 .page-content {
-	.makeColumn(10);
+	.makeFluidCol(12);
+}
+.logged-in .page-content {
+	.makeFluidCol(9);
+}
+
+.no-href {
+	cursor: pointer;
+}
+
+.login-modal {
+	width: 250px;
+	margin-left: -125px;
+	left: 50%;
+
+	form {
+		margin: 0;
+	}
+
+	.social-login {
+		.unstyled;
+		li a {
+			cursor: pointer;
+		}
+	}
 }
 
 /* App Styles */

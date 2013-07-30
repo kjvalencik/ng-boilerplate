@@ -51,10 +51,14 @@ module.exports = {
 	 */
 	vendor_files: {
 		js: [
+			'vendor/socket.io-client/dist/socket.io.min.js',
 			'vendor/angular-unstable/angular.js',
+			'vendor/angular-resource/angular-resource.js',
 			'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
 			'vendor/angular-ui-router/release/angular-ui-router.js',
 			'vendor/angular-ui-utils/modules/route/route.js',
+			'vendor/angular-ui/common/module.js',
+			'vendor/angular-ui/modules/directives/if/if.js',
 			'vendor/underscore/underscore-min.js',
 			'src/common/underscore.mixins.js'
 		],

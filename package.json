@@ -19,7 +19,13 @@
     "grunt-bg-shell": "~2.1.0",
     "connect-redis": "~1.4.5",
     "api-routes": "~0.1.2",
-    "passport": "~0.1.17"
+    "passport": "~0.1.17",
+    "passport-google": "~0.3.0",
+    "redis": "~0.8.4",
+    "async": "~0.2.9",
+    "underscore": "~1.5.1",
+    "socket.io": "~0.9.16",
+    "passport.socketio": "~1.2.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

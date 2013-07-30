@@ -2,20 +2,24 @@ angular.module('ttt', [
 	'templates-app',
 	'templates-common',
 	'ttt.base',
+	'ttt.user-list',
 	'ttt.home',
 	'ui.router',
-	'titleService'
+	'ui.directives',
+	'titleService',
+	'filters.util'
 ])
 
 .config( function myAppConfig ($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.otherwise( '/' );
+	$urlRouterProvider.otherwise('/');
 })
 
 .run(function run (titleService) {
 	titleService.setSuffix( ' | Tic, Tac, Tango' );
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+.controller('AppCtrl', function AppCtrl ($scope, User) {
+	$scope.user = User.getUser();
 })
 
 .run(function setTitleOfLabel ($rootScope, titleService, $navs) {

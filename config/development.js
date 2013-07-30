@@ -2,6 +2,7 @@
 
 exports.config = {
 	port: 3000,
+	host: 'http://v5ken.underarmour.com:3000',
 	staticMounts: ['build'],
 	session: {
 		secret: 'this is really secure',

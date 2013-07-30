@@ -5,6 +5,10 @@
 			<ul class="nav">
 				<li><a href="/#/">Home</a></li>	
 			</ul>
+			<ul class="nav pull-right">
+				<li ng-hide="user.username"><a class="no-href" ng-click="login()">Login</a></li>
+				<li ng-show="user.username"><a class="no-href" ng-click="logout()">Logout</a></li>
+			</ul>
 		</div>
 	</div>
 </div>

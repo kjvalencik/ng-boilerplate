@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ttt" ng-controller="AppCtrl">
+<html ng-app="ttt" ng-controller="AppCtrl" ng-class="{false: 'logged-in', true: 'anonymous'}[!user.username]">
 	<head>
 		<title>Tic, Tac, Tango</title>
 
@@ -8,17 +8,17 @@
 		<meta property="og:url" content="http://ttt.valencik.com" />
 		<meta property="og:description" content="Tic, Tac, Tango.">
 
-		<!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+		<!-- compiled CSS --><% styles.forEach(function (file) { %>
 		<link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 
-		<!-- compiled CSS --><% scripts.forEach( function ( file ) { %>
+		<!-- compiled CSS --><% scripts.forEach(function (file) { %>
 		<script type="text/javascript" src="/<%= file %>"></script><% }); %>
 	</head>
 	<body>
 		<div ui-view="header"></div>
 		<div class="container">
 			<div class="page-content" ui-view="main"></div>
-			<div class="user-list" ui-view="user-list"></div>
+			<div ui-if="!!user.username" class="user-list" ui-view="user-list"></div>
 		</div>
 	</body>
 </html>

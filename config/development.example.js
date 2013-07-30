@@ -2,6 +2,7 @@
 
 exports.config = {
 	port: 3000,
+	host: 'http://localhost:3000',
 	staticMounts: ['build'],
 	session: {
 		secret: 'this is really secure',

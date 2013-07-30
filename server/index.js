@@ -13,11 +13,11 @@ var env = require('./util/env'),
 	router = require('./router');
 
 // Setup application
-var app = express();
+var app = require('./util/app');
 env.current.session.store = new RedisStore(env.current.redis);
 env.current.session.cookieParser = express.cookieParser;
 
-app.configure(function(){
+app.configure(function () {
 	app.set('port', env.current.port);
 
 	// Session
@@ -39,13 +39,14 @@ app.configure(function(){
 
 	app.use(apiRouter());
 	app.use(app.router);
-
-
 });
 
 app.configure('development', function () {
 	app.use(express.errorHandler());
 });
+
+// Configure passport middleware
+require('./util/passport-util');
 
 // Apply all of our routes
 router(app, env);
@@ -53,3 +54,9 @@ router(app, env);
 var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log("Express server listening on port " + app.get('port'));
 });
+
+// Start socket services
+var io = require('socket.io').listen(server),
+	ioPassport = require('passport.socketio');
+io.set("authorization", ioPassport.authorize(env.current.session));
+require('./sockets/user-list')(io);
