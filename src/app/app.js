@@ -4,6 +4,7 @@ angular.module('ttt', [
 	'ttt.base',
 	'ttt.user-list',
 	'ttt.home',
+	'ttt.game',
 	'ui.router',
 	'ui.directives',
 	'titleService',

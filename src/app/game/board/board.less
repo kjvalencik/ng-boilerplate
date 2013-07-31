@@ -1,0 +1,42 @@
+@boardColor: #000;
+@boardCellSize: 32%;
+@boardDivSize: 2%;
+
+.game-board {
+	width: 100%;
+
+	&-vert {
+		width: @boardDivSize;
+		padding-bottom: @boardCellSize;
+		background: @boardColor;
+		position: relative;
+		float: left;
+	}
+
+	&-horiz {
+		padding-bottom: @boardDivSize;
+		width: 100%;
+		background: @boardColor;
+	}
+
+	&-inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	&-row {
+		.clearfix;
+	}
+
+	&-cell {
+		padding-bottom: @boardCellSize;
+		position: relative;
+		float: left;
+		width: @boardCellSize;
+
+		&.first {
+			margin-left: 0;
+		}
+	}
+}

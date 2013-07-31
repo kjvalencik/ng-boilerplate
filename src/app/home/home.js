@@ -11,7 +11,7 @@ angular.module('ttt.home', [
 	});
 })
 
-.controller( 'HomeCtrl', function HomeController($scope, titleService) {
+.controller('HomeCtrl', function HomeController($scope, titleService) {
 	titleService.setTitle('Home');
 })
 
