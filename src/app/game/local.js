@@ -3,7 +3,7 @@ angular.module('ttt.game.local', [
 ])
 
 .controller('LocalGameCtrl', function LocalGameController($scope, Board) {
-	$scope.board = new Board();
+	$scope.board = new Board(Board);
 })
 
 ;

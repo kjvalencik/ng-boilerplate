@@ -12,17 +12,23 @@ Cell.prototype.play = function (player) {
 
 // Pass in a cell prototype, so that boards of boards
 // can be created.
-Board = function (CellProto) {
-	var i, j;
+Board = function (i, j) {
+	var CellProto = Cell,
+		k, m;
 
-	CellProto = CellProto || Cell;
+	if ("function" === typeof i) {
+		CellProto = i;
+	} else {
+		this.i = i;
+		this.j = j;
+	}
 
 	this.curPlayer = 0;
 	this.board = [];
-	for (i = 0; i < 3; i++) {
+	for (k = 0; k < 3; k++) {
 		this.board.push([]);
-		for (j = 0; j < 3; j++) {
-			this.board[i].push(new CellProto(i, j));
+		for (m = 0; m < 3; m++) {
+			this.board[k].push(new CellProto(k, m));
 		}
 	}
 };

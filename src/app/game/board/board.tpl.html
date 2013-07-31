@@ -6,7 +6,19 @@
 			<div ui-if="!$first" class="game-board-vert"></div>
 			<div class="game-board-cell" ng-class="{first:$first}">
 				<div class="game-board-inner">
-					{{cell.i}}, {{cell.j}}
+					<!-- Start inception -->
+					<div class="game-board">
+						<div class="game-board-row" ng-repeat="row in cell.board">
+							<div ui-if="!$first" class="game-board-horiz"></div>
+							<div ng-repeat="cell in row">
+								<div ui-if="!$first" class="game-board-vert"></div>
+								<div class="game-board-cell" ng-class="{first:$first}">
+									<div class="game-board-inner"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End inception -->
 				</div>
 			</div>
 		</div>
