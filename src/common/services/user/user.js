@@ -11,6 +11,9 @@ angular.module('services.user', [
 	user = User.get();
 
 	return {
+		isAuthenticated: function () {
+			return !!user.authenticated;
+		},
 		set: function (data) {
 			user = _.extend(user, data);
 			$rootScope.$emit('logged-in');

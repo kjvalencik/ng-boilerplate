@@ -1,9 +1,50 @@
 @boardColor: #000;
+@boardWinningColor: #00ff00;
 @boardCellSize: 32%;
 @boardDivSize: 2%;
 
+.game-page {
+	position: relative;
+	.btn-reset {
+		position: absolute;
+		top: 0;
+		right: 0;
+		.btn-large;
+	}
+}
+
 .game-board {
+	margin-top: 30px;
 	width: 100%;
+	max-width: 900px;
+
+	&.open &-inner.open {
+		cursor: pointer;
+	}
+	&.open.o-player &-inner.open:hover .o-mark {
+		.opacity(25);
+		display: block;
+	}
+	&.open.x-player &-inner.open:hover .x-mark {
+		.opacity(25);
+		display: block;
+	}
+
+	.o-mark, .x-mark {
+		position: relative;
+		z-index: 1;
+		display: none;
+	}
+	&.ultimate .o-mark,
+	&.ultimate .x-mark {
+		.opacity(60);
+	}
+	.o-won .o-mark {
+		display: block;
+	}
+	.x-won .x-mark {
+		display: block;
+	}
 
 	&-vert {
 		width: @boardDivSize;
@@ -21,9 +62,11 @@
 
 	&-inner {
 		position: absolute;
-		top: 5%;
-		left: 5%;
-		width: 90%;
+		top: 10%;
+		bottom: 10%;
+		left: 10%;
+		right: 10%;
+		display: block;
 	}
 
 	&-row {
@@ -35,9 +78,37 @@
 		position: relative;
 		float: left;
 		width: @boardCellSize;
+	
+		&.winning { 
+			background-color: @boardWinningColor;
+		}
 
 		&.first {
 			margin-left: 0;
+		}
+	}
+
+	/* Start inception tweaks */
+	&.ultimate .game-board {
+		.o-mark, .x-mark {
+			.opacity(100);
+		}
+	}
+	.game-board {
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-top: 0;
+
+		.o-mark, .x-mark {
+			display: none;
+		}
+
+		.o-won .o-mark {
+			display: block;
+		}
+		.x-won .x-mark {
+			display: block;
 		}
 	}
 }

@@ -1,0 +1,42 @@
+<div class="game-page">
+	<h1 ui-if="uboard.isPlayer(0)">O Won!</h1>
+	<h1 ui-if="uboard.isPlayer(1)">X Won!</h1>
+	<h1 ui-if="uboard.isTie()">Tie.</h1>
+	<h1 ui-if="!uboard.isFull() && uboard.isOpen() && uboard.curPlayer === 0">O's Turn</h1>
+	<h1 ui-if="!uboard.isFull() && uboard.isOpen() && uboard.curPlayer === 1">X's Turn</h1>
+	
+	<button ng-click="reset()" class="btn btn-reset">Reset</button>
+
+	<div class="game-board ultimate">
+		<div class="game-board-row" ng-repeat="row in uboard.board">
+			<div ui-if="!$first" class="game-board-horiz"></div>
+			<div ng-repeat="board in row">
+				<div ui-if="!$first" class="game-board-vert"></div>
+				<div class="game-board-cell" ng-class="{winning:board.winning}">
+					<div class="game-board-inner" ng-class="{0:'o-won',1:'x-won',undefined:'open'}[board.winner]">
+						<img src="assets/o.svg" class="o-mark" width="100%" height="100%" />
+						<img src="assets/x.svg" class="x-mark" width="100%" height="100%" />
+						<!-- Start inception -->
+						<div class="game-board" ng-class="{0:'o-player',1:'x-player'}[uboard.curPlayer] + ' ' + {true: 'open'}[board.isOpen()]">
+							<div class="game-board-row" ng-repeat="row in board.board">
+								<div ui-if="!$first" class="game-board-horiz"></div>
+								<div ng-repeat="cell in row">
+									<div ui-if="!$first" class="game-board-vert"></div>
+									<div class="game-board-cell" ng-class="{winning:cell.winning}">
+										<a class="game-board-inner" ng-class="{0:'o-won',1:'x-won',undefined:'open'}[cell.winner]" ng-click="play(board, cell)">
+											<img src="assets/o.svg" class="o-mark" width="100%" height="100%" />
+											<img src="assets/x.svg" class="x-mark" width="100%" height="100%" />
+											<!-- Start inception -->
+											<!-- End inception -->
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- End inception -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

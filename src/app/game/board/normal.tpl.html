@@ -1,0 +1,24 @@
+<div class="game-page">
+	<h1 ui-if="board.isPlayer(0)">O Won!</h1>
+	<h1 ui-if="board.isPlayer(1)">X Won!</h1>
+	<h1 ui-if="board.isTie()">Tie.</h1>
+	<h1 ui-if="!board.isFull() && board.isOpen() && board.curPlayer === 0">O's Turn</h1>
+	<h1 ui-if="!board.isFull() && board.isOpen() && board.curPlayer === 1">X's Turn</h1>
+	
+	<button ng-click="reset()" class="btn btn-reset">Reset</button>
+	
+	<div class="game-board" ng-class="{0:'o-player',1:'x-player'}[board.curPlayer] + ' ' + {true: 'open'}[board.isOpen()]">
+		<div class="game-board-row" ng-repeat="row in board.board">
+			<div ui-if="!$first" class="game-board-horiz"></div>
+			<div ng-repeat="cell in row">
+				<div ui-if="!$first" class="game-board-vert"></div>
+				<div class="game-board-cell" ng-class="{winning:cell.winning}">
+					<a class="game-board-inner" ng-class="{0:'o-won',1:'x-won',undefined:'open'}[cell.winner]" ng-click="play(cell)">
+						<img src="assets/o.svg" class="o-mark" width="100%" height="100%" />
+						<img src="assets/x.svg" class="x-mark" width="100%" height="100%" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

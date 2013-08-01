@@ -5,6 +5,8 @@ angular.module('ttt.home', [
 .config(function config($navsProvider) {
 	$navsProvider.nav( 'ttt.home', {
 		url: '/',
+		access: 'free',
+		nav: {left: 1},
 		controller: 'HomeCtrl',
 		label: 'Home',
 		templateUrl: 'home/home.tpl.html'

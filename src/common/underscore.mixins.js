@@ -36,5 +36,14 @@ _.mixin({
 		return _.map(obj, function (val, key) {
 			return key + '=' + val;
 		}).join('&');
-	}
+	},
+	extendPrototype: (function () {
+		var Surrogate = function () {};
+		return function (Sub, Super) {
+			Surrogate.prototype = Super.prototype;
+			Sub.prototype = new Surrogate();
+			Sub.prototype.constructor = Sub;
+			return Sub;
+		};
+	}())
 });

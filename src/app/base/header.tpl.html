@@ -2,13 +2,16 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="brand" href="/#/">TTT</a>
-			<ul class="nav">
-				<li><a href="/#/">Home</a></li>	
-			</ul>
+			<div class="nav-collapse collapse navbar-responsive-collapse">
+				<ul id="nav-menu" class="nav navbar-nav">
+					<li ng-repeat="state in states | has:['url','nav.left'] | auth | isActive | orderBy:'nav.left'" ng-class="{active: state.active}">
+						<a href="#{{state.url}}" ng-bind="state.label"></a>
+					</li>
+				</ul>
+			</div>
 			<ul class="nav pull-right">
 				<li ng-hide="user.username"><a class="no-href" ng-click="login()">Login</a></li>
 				<li ng-show="user.username"><a class="no-href" ng-click="logout()">Logout</a></li>
 			</ul>
-		</div>
 	</div>
 </div>

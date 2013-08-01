@@ -51,6 +51,7 @@ module.exports = {
 	 */
 	vendor_files: {
 		js: [
+			'vendor/jquery/jquery.min.js',
 			'vendor/socket.io-client/dist/socket.io.min.js',
 			'vendor/angular-unstable/angular.js',
 			'vendor/angular-resource/angular-resource.js',

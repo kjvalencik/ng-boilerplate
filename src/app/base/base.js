@@ -25,7 +25,7 @@ angular.module('ttt.base', [
 
 .controller('MainCtrl', function MainCtrl() {})
 
-.controller('HeaderCtrl', function ($scope, $dialog, User) {
+.controller('HeaderCtrl', function ($scope, $dialog, $navs, User) {
 	var dialogOpts = {
 		backdrop: true,
 		keyboard: true,
@@ -36,6 +36,7 @@ angular.module('ttt.base', [
 	};
 
 	$scope.user = User.getUser();
+	$scope.states = $navs.arr;
 
 	$scope.login = function () {
 		$dialog.dialog(dialogOpts).open();
