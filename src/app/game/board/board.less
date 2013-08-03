@@ -1,5 +1,6 @@
 @boardColor: #000;
 @boardWinningColor: #00ff00;
+@nextBoardColor: #ffff00;
 @boardCellSize: 32%;
 @boardDivSize: 2%;
 
@@ -21,10 +22,7 @@
 	&.open &-inner.open {
 		cursor: pointer;
 	}
-	&.open.o-player &-inner.open:hover .o-mark {
-		.opacity(25);
-		display: block;
-	}
+	&.open.o-player &-inner.open:hover .o-mark,
 	&.open.x-player &-inner.open:hover .x-mark {
 		.opacity(25);
 		display: block;
@@ -39,9 +37,7 @@
 	&.ultimate .x-mark {
 		.opacity(60);
 	}
-	.o-won .o-mark {
-		display: block;
-	}
+	.o-won .o-mark,
 	.x-won .x-mark {
 		display: block;
 	}
@@ -89,11 +85,23 @@
 	}
 
 	/* Start inception tweaks */
+
 	&.ultimate .game-board {
 		.o-mark, .x-mark {
 			.opacity(100);
 		}
 	}
+
+	&.forced .next-board {
+		background-color: @nextBoardColor;
+	}
+
+	&-inner.not-full:hover {
+		.o-mark, .x-mark {
+			z-index: 0;
+		}
+	}
+
 	.game-board {
 		position: absolute;
 		top: 0;
@@ -104,11 +112,18 @@
 			display: none;
 		}
 
-		.o-won .o-mark {
-			display: block;
-		}
+		.o-won .o-mark,
 		.x-won .x-mark {
 			display: block;
 		}
+	}
+
+	&.allow-any.o-player .game-board .game-board-inner.open:hover .o-mark,
+	&.allow-any.x-player .game-board .game-board-inner.open:hover .x-mark,
+	&.o-player .next-board .game-board .game-board-inner.open:hover .o-mark,
+	&.x-player .next-board .game-board .game-board-inner.open:hover .x-mark {
+		cursor: pointer;
+		.opacity(25);
+		display: block;
 	}
 }

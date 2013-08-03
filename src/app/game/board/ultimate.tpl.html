@@ -7,17 +7,17 @@
 	
 	<button ng-click="reset()" class="btn btn-reset">Reset</button>
 
-	<div class="game-board ultimate">
+	<div class="game-board ultimate" ng-class="{true: 'allow-any', false: 'forced'}[uboard.allowAny()] + ' ' + {0:'o-player',1:'x-player'}[uboard.curPlayer]">
 		<div class="game-board-row" ng-repeat="row in uboard.board">
 			<div ui-if="!$first" class="game-board-horiz"></div>
 			<div ng-repeat="board in row">
 				<div ui-if="!$first" class="game-board-vert"></div>
-				<div class="game-board-cell" ng-class="{winning:board.winning}">
-					<div class="game-board-inner" ng-class="{0:'o-won',1:'x-won',undefined:'open'}[board.winner]">
+				<div class="game-board-cell" ng-class="{true: 'winning'}[board.winning] + ' ' + {true:'next-board'}[uboard.isNextBoard(board)]">
+					<div class="game-board-inner" ng-class="{0:'o-won',1:'x-won',undefined:'open'}[board.winner] + ' ' + {false: 'not-full'}[board.isFull()]">
 						<img src="assets/o.svg" class="o-mark" width="100%" height="100%" />
 						<img src="assets/x.svg" class="x-mark" width="100%" height="100%" />
 						<!-- Start inception -->
-						<div class="game-board" ng-class="{0:'o-player',1:'x-player'}[uboard.curPlayer] + ' ' + {true: 'open'}[board.isOpen()]">
+						<div class="game-board">
 							<div class="game-board-row" ng-repeat="row in board.board">
 								<div ui-if="!$first" class="game-board-horiz"></div>
 								<div ng-repeat="cell in row">
@@ -26,8 +26,6 @@
 										<a class="game-board-inner" ng-class="{0:'o-won',1:'x-won',undefined:'open'}[cell.winner]" ng-click="play(board, cell)">
 											<img src="assets/o.svg" class="o-mark" width="100%" height="100%" />
 											<img src="assets/x.svg" class="x-mark" width="100%" height="100%" />
-											<!-- Start inception -->
-											<!-- End inception -->
 										</a>
 									</div>
 								</div>

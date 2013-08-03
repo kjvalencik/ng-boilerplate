@@ -183,6 +183,8 @@ Board.prototype.play = function (cell) {
 UBoard = function () {
 	var k, m;
 
+	this.lastMove = [-1, -1];
+
 	this.board = [];
 	for (k = 0; k < 3; k++) {
 		this.board.push([]);
@@ -196,6 +198,18 @@ UBoard = function () {
 
 UBoard = _.extendPrototype(UBoard, Board);
 
+UBoard.prototype.getNextBoard = function () {
+	return this.board[this.lastMove[0]][this.lastMove[1]];
+};
+
+UBoard.prototype.allowAny = function () {
+	return this.lastMove[0] < 0 || this.getNextBoard().isFull();
+};
+
+UBoard.prototype.isNextBoard = function (board) {
+	return (board.i === this.lastMove[0]) && (board.j === this.lastMove[1]);
+};
+
 UBoard.prototype.play = function (board, cell) {
 	// Check the players turn
 	if (!this.isTurn()) {
@@ -203,6 +217,10 @@ UBoard.prototype.play = function (board, cell) {
 	}
 	// Check that the game is still in progress
 	if (!this.isOpen()) {
+		return false;
+	}
+	// Check that this is an allowed board
+	if (!this.allowAny() && !this.isNextBoard(board)) {
 		return false;
 	}
 	// Check that this small board isn't full
@@ -215,12 +233,13 @@ UBoard.prototype.play = function (board, cell) {
 	}
 
 	// Make the move
+	this.lastMove = [cell.i, cell.j];
 	cell.play(this.curPlayer);
 	board.moves += 1;
 
 	// Check for a winner on this board
 	board.curPlayer = this.curPlayer;
-	if (board.isWon(cell)) {
+	if (board.isOpen() && board.isWon(cell)) {
 		this.moves += 1;
 		board.winner = this.curPlayer;
 
