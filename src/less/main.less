@@ -1,15 +1,9 @@
 /* Bootstrap styling */
-@import '../../vendor/bootstrap/less/bootstrap.less';
-@import '../../vendor/bootstrap/less/responsive.less';
-@import 'variables.less';
-@import 'bootswatch.less';
-@import 'mixins.less';
-@import 'zocial.less';
+@import '../../vendor/bootswatch/bower_components/bootstrap/less/bootstrap';
+@import '../../vendor/bootswatch/united/bootswatch';
+@import '../../vendor/bootswatch/united/variables';
 
-// Sprite icons path
-// -------------------------
-@iconSpritePath:      "glyphicons-halflings.png";
-@iconWhiteSpritePath: "glyphicons-halflings-white.png";
+@import 'zocial.less';
 
 html {
 	overflow-y: scroll;
@@ -25,10 +19,10 @@ body {
 }
 
 .page-content {
-	.makeFluidCol(12);
+	.make-column(12);
 }
 .logged-in .page-content {
-	.makeFluidCol(9);
+	.make-column(9);
 }
 
 .no-href {
@@ -36,9 +30,11 @@ body {
 }
 
 .login-modal {
-	width: 250px;
-	margin-left: -125px;
-	left: 50%;
+	.modal-dialog {
+		width: 250px;
+		margin-left: -125px;
+		left: 50%;
+	}
 
 	form {
 		margin: 0;
@@ -46,10 +42,30 @@ body {
 
 	.social-login {
 		.unstyled;
+		padding: 0;
 		li a {
 			cursor: pointer;
 		}
 	}
+
+	.alert {
+		margin: 17px 0 -17px 0;
+	}
+}
+
+/* Override to bootstrap for angular-ui-bootstrap */
+.modal {
+	display: block;
+	z-index: 1030;
+	position: inherit;
+}
+.modal-backdrop {
+	z-index: 1040;
+	.opacity(.80);
+}
+.modal-dialog {
+	z-index: 1050;
+	position: fixed;
 }
 
 /* App Styles */

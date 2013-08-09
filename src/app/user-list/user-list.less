@@ -4,14 +4,18 @@
 @red: #ff0000;
 
 .user-list {
-	.makeFluidCol(3);
+	.panel;
+	.make-column(3);
 	&-content {
-		.table;
-		.table-striped;
-		.table-hover;
-		.table-bordered;
-		.match {
-			font-weight: bold;
+		table {
+			.table;
+			.table-striped;
+			.table-hover;
+			.table-bordered;
+			margin-top: 15px;
+			.match {
+				font-weight: bold;
+			}
 		}
 
 		.active-icon {
@@ -19,7 +23,7 @@
 			width: 15px;
 			height: 15px;
 			margin: 0 7px -4px 0;
-			.border-radius(50%);
+			border-radius: 50%;
 			border: 1px solid @darkRed;
 			#gradient .radial(@red, @darkRed);
 

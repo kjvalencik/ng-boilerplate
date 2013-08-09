@@ -1,45 +1,53 @@
 {
-  "author": "Josh David Miller",
+  "author": "K.J. Valencik",
   "name": "ng-boilerplate",
-  "version": "0.3.0",
-  "homepage": "http://bit.ly/ng-boilerplate",
+  "version": "0.0.1",
+  "homepage": "http://ttt.valencik.com",
   "licenses": {
     "type": "MIT",
-    "url": "https://raw.github.com/joshdmiller/ng-boilerplate/master/LICENSE"
+    "url": "https://raw.github.com/kjvalencik/tictactango/master/LICENSE"
   },
-  "bugs": "https://github.com/joshdmiller/ng-boilerplate/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:joshdmiller/ng-boilerplate.git"
+    "url": "git@github.com:kjvalencik/tictactango.git"
   },
   "dependencies": {
-    "express": "~3.3.4",
-    "nodemon": "~0.7.8",
-    "grunt-env": "~0.4.0",
     "grunt-bg-shell": "~2.1.0",
-    "connect-redis": "~1.4.5",
+    "grunt-env": "~0.4.0",
     "api-routes": "~0.1.2",
     "passport": "~0.1.17",
     "passport-google": "~0.3.0",
-    "redis": "~0.8.4",
+    "connect-redis": "~1.4.5",
+    "nodemon": "~0.7.10",
+    "express": "~3.3.4",
     "async": "~0.2.9",
     "underscore": "~1.5.1",
-    "socket.io": "~0.9.16",
-    "passport.socketio": "~1.2.1"
+    "redis": "~0.8.4",
+    "passport.socketio": "~1.2.1",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-recess": "~0.3.0",
-    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-recess": "~0.3.4",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-jshint": "~0.4.3",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-watch": "~0.4.0",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-karma": "~0.5.0",
-    "grunt-ngmin": "0.0.2",
-    "grunt-html2js": "~0.1.3",
-    "grunt-conventional-changelog": "~0.1.1",
-    "grunt-bump": "0.0.6"
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-jshint": "~0.6.2",
+    "grunt-contrib-watch": "~0.5.1",
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.0",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma": "~0.10.1",
+    "grunt-karma": "~0.6.1",
+    "grunt-html2js": "~0.1.6",
+    "grunt-bump": "0.0.11",
+    "grunt-ngmin": "0.0.3",
+    "grunt-conventional-changelog": "~1.0.0"
   }
 }

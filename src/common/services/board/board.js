@@ -1,4 +1,10 @@
-var Cell, Board, UBoard;
+var Cell, Board, UBoard, _;
+
+if ("object" === typeof angular) {
+	_ = window._;
+} else {
+	_ = require('underscore');
+}
 
 Cell = function (i, j) {
 	this.i = i;
