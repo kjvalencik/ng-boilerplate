@@ -3,7 +3,8 @@
 @import '../../vendor/bootswatch/united/bootswatch';
 @import '../../vendor/bootswatch/united/variables';
 
-@import 'zocial.less';
+@import '../../vendor/bootswatch/bower_components/font-awesome/less/font-awesome';
+@FontAwesomePath: ".";
 
 html {
 	overflow-y: scroll;
@@ -44,7 +45,22 @@ body {
 		.unstyled;
 		padding: 0;
 		li a {
+			.btn;
+			.btn-primary;
+
 			cursor: pointer;
+			position: relative;
+			padding-left: 45px;
+
+			span {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 37px;
+				line-height: 37px;
+				font-size: 20px;
+				border-right: 1px solid darken(@btn-primary-border, 10%);
+			}
 		}
 	}
 
@@ -56,17 +72,13 @@ body {
 /* Override to bootstrap for angular-ui-bootstrap */
 .modal {
 	display: block;
-	z-index: 1030;
-	position: inherit;
+	height: 0;
+	overflow: visible;
 }
 .modal-backdrop {
-	z-index: 1040;
 	.opacity(.80);
 }
-.modal-dialog {
-	z-index: 1050;
-	position: fixed;
-}
+
 
 /* App Styles */
 @import '../app/home/home.less';

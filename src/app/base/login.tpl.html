@@ -9,7 +9,10 @@
 			<div class="modal-body">
 				<ul ng-show="!user.authenticated" class="social-login">
 					<li>
-						<a ng-click="login('/api/auth/google')" class="zocial google">Sign in with Google</a>
+						<a ng-click="login('/api/auth/google')" class="google">
+							<span class="icon-google-plus"></span>
+							Sign in with Google
+						</a>
 					</li>
 				</ul>
 				<div ng-show="user.authenticated">

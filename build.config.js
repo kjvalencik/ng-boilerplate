@@ -63,7 +63,9 @@ module.exports = {
 			'vendor/angular-ui/common/module.js',
 			'vendor/angular-ui/modules/directives/if/if.js'
 		],
-		css: [
+		css: [],
+		assets: [
+			'vendor/bootswatch/bower_components/font-awesome/font/*.*'
 		]
 	},
 };
