@@ -1,6 +1,7 @@
 var redisUtils = require('../util/redis-util'),
 	goodUser = new RegExp("^[a-zA-Z0-9]{3,16}$"),
-	client = redisUtils.createClient();
+	client = redisUtils.createClient(),
+	_ = require('underscore');
 
 function pickFields(user) {
 	if (!user) {
@@ -25,7 +26,7 @@ module.exports = function (api) {
 			res.json({});
 		},
 		'put': function createUsername (req, res) {
-			var key;
+			var key, user;
 
 			if (!req.isAuthenticated()) {
 				return res.send(412, 'Not authenticated.');
@@ -42,10 +43,10 @@ module.exports = function (api) {
 			}
 
 			// Attempt to create the new username
-			req.user.username = req.query.username;
-			key = req.user.username.toLowerCase();
-			req.session.passport.user = key;
-			client.hsetnx(['users', key, JSON.stringify(req.user)], function (err, success) {
+			key = req.query.username.toLowerCase();
+			user = _.extend({}, req.user);
+			user.username = req.query.username;
+			client.hsetnx(['users', key, JSON.stringify(user)], function (err, success) {
 				if (err) {
 					return res.send(500, 'Unknown error.');
 				}
@@ -54,11 +55,13 @@ module.exports = function (api) {
 					return res.send(409, 'Username already exists.');
 				}
 
+				// Login
+				req.session.passport.user = key;
+
 				// Update the lookup key
-				client.hset('users-id', req.user.id, key);
 				client.hdel('users', req.user.id);
 
-				return res.json(req.user);
+				return res.json(user);
 			});
 		}
 	});
