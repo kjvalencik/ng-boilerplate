@@ -30,10 +30,12 @@ body {
 	cursor: pointer;
 }
 
+@loginModalWidth: 280px;
+
 .login-modal {
 	.modal-dialog {
-		width: 250px;
-		margin-left: -125px;
+		width: @loginModalWidth;
+		margin-left: -(@loginModalWidth / 2);
 		left: 50%;
 	}
 
@@ -50,7 +52,8 @@ body {
 
 			cursor: pointer;
 			position: relative;
-			padding-left: 45px;
+			padding-left: 50px;
+			width: 100%;
 
 			span {
 				position: absolute;

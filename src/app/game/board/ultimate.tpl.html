@@ -7,7 +7,8 @@
 	
 	<button ng-click="reset()" class="btn btn-reset">Reset</button>
 
-	<div class="game-board ultimate" ng-class="{true: 'allow-any', false: 'forced'}[uboard.allowAny()] + ' ' + {0:'o-player',1:'x-player'}[uboard.curPlayer]">
+	<div class="game-board ultimate"
+			ng-class="{true: 'allow-any', false: 'forced'}[uboard.allowAny()] + ' ' + {0:'o-player',1:'x-player'}[uboard.curPlayer] + ' ' + {true:'in-progress'}[!uboard.isFull() && uboard.isOpen()]">
 		<div class="game-board-row" ng-repeat="row in uboard.board">
 			<div ui-if="!$first" class="game-board-horiz"></div>
 			<div ng-repeat="board in row">

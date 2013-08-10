@@ -92,11 +92,11 @@
 		}
 	}
 
-	&.forced .next-board {
+	&.forced.in-progress .next-board {
 		background-color: @nextBoardColor;
 	}
 
-	&-inner.not-full:hover {
+	&.in-progress &-inner.not-full:hover {
 		.o-mark, .x-mark {
 			z-index: 0;
 		}
@@ -118,10 +118,10 @@
 		}
 	}
 
-	&.allow-any.o-player .game-board .game-board-inner.open:hover .o-mark,
-	&.allow-any.x-player .game-board .game-board-inner.open:hover .x-mark,
-	&.o-player .next-board .game-board .game-board-inner.open:hover .o-mark,
-	&.x-player .next-board .game-board .game-board-inner.open:hover .x-mark {
+	&.in-progress.allow-any.o-player .game-board .game-board-inner.open:hover .o-mark,
+	&.in-progress.allow-any.x-player .game-board .game-board-inner.open:hover .x-mark,
+	&.in-progress.o-player .next-board .game-board .game-board-inner.open:hover .o-mark,
+	&.in-progress.x-player .next-board .game-board .game-board-inner.open:hover .x-mark {
 		cursor: pointer;
 		.opacity(.25);
 		display: block;
